@@ -33,8 +33,8 @@ void setup()
 void draw()
 {
     system("clear");
-    printf("snakei= %d, snakej= %d\n", snakei, snakej);
-    printf("fruiti= %d, fruitj= %d\n", fruiti, fruitj);
+    // printf("snakei= %d, snakej= %d\n", snakei, snakej);// DEBUG
+    // printf("fruiti= %d, fruitj= %d\n", fruiti, fruitj);// DEBUG
     for (i = 0; i < height; i++)
     {
         for (j = 0; j < width; j++)
