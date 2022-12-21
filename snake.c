@@ -10,9 +10,19 @@
 #include <string.h>
 #include <time.h>
 
-int i, j, height, width;
+// TODO implement snake tail
+
+int height, width;
 int gameover, score;
-int snakei, snakej, fruiti, fruitj, flag;
+int fruiti, fruitj, flag;
+
+typedef struct
+{
+    int i;
+    int j;
+} coordinates;
+
+coordinates *snake; // snake come array di coordinaate
 
 // Function to generate the fruit within the boundary
 void setup()
@@ -20,24 +30,25 @@ void setup()
     gameover = 0;
     height = 10;
     width = 20;
-    snakei = height / 2;
-    snakej = width / 2;
     score = 0;
-
     srand(time(NULL));
     fruiti = (rand() % ((height - 1) - 1)) + 1;
     fruitj = (rand() % ((width - 1) - 1)) + 1;
+
+    // (width * height) massima grandezza di snake
+    // snake come array di coordinate
+    snake = malloc(sizeof(coordinates) * width * height);
 }
 
 // Function to draw the boundaries
 void draw()
 {
     system("clear");
-    printf("snakei= %d, snakej= %d\n", snakei, snakej);
-    printf("fruiti= %d, fruitj= %d\n", fruiti, fruitj);
-    for (i = 0; i < height; i++)
+    printf("snakei= %d, snakej= %d\n", snake[0].i, snake[0].y); // DEBUG
+    printf("fruiti= %d, fruitj= %d\n", fruiti, fruitj);         // DEBUG
+    for (int i = 0; i < height; i++)
     {
-        for (j = 0; j < width; j++)
+        for (int j = 0; j < width; j++)
         {
             if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
                 printf("#");
