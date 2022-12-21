@@ -22,15 +22,11 @@ void setup()
     width = 20;
     snakei = height / 2;
     snakej = width / 2;
-label1:
-    fruiti = rand() % height - 1;
-    if (fruiti == 0)
-        goto label1;
-label2:
-    fruitj = rand() % width - 1;
-    if (fruitj == 0)
-        goto label2;
     score = 0;
+
+    srand(time(NULL));
+    fruiti = (rand() % ((height - 1) - 1)) + 1;
+    fruitj = (rand() % ((width - 1) - 1)) + 1;
 }
 
 // Function to draw the boundaries
@@ -113,14 +109,9 @@ void logic()
     {
         score++;
         // After eating the above fruit, generate new fruit
-    label3:
-        fruiti = rand() % height - 1;
-        if (fruiti == 0)
-            goto label3;
-    label4:
-        fruitj = rand() % width - 1;
-        if (fruitj == 0)
-            goto label4;
+        srand(time(NULL));
+        fruiti = (rand() % ((height - 1) - 1)) + 1;
+        fruitj = (rand() % ((width - 1) - 1)) + 1;
     }
 
     flag = 0;
