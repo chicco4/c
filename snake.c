@@ -12,8 +12,7 @@
 
 // TODO implement snake tail
 
-int height, width;
-int gameover, score, flag;
+int height, width, gameover, score, flag;
 
 typedef struct
 {
@@ -21,7 +20,7 @@ typedef struct
     int j;
 } coordinates;
 
-coordinates *snake; // snake come array di coordinaate
+coordinates *snake; // snake come array di coordinate
 coordinates fruit;
 
 // Function to generate the fruit within the boundary
