@@ -38,13 +38,15 @@ void setup()
     // (width * height) massima grandezza di snake
     // snake come array di coordinate
     snake = malloc(sizeof(coordinates) * width * height);
+    snake[0].i = height / 2;
+    snake[0].j = width / 2;
 }
 
 // Function to draw the boundaries
 void draw()
 {
     system("clear");
-    printf("snakei= %d, snakej= %d\n", snake[0].i, snake[0].y); // DEBUG
+    printf("snakei= %d, snakej= %d\n", snake[0].i, snake[0].j); // DEBUG
     printf("fruiti= %d, fruitj= %d\n", fruiti, fruitj);         // DEBUG
     for (int i = 0; i < height; i++)
     {
@@ -52,7 +54,7 @@ void draw()
         {
             if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
                 printf("#");
-            else if (i == snakei && j == snakej)
+            else if (i == snake[0].i && j == snake[0].j)
                 printf("o");
             else if (i == fruiti && j == fruitj)
                 printf("$");
@@ -96,27 +98,27 @@ void logic()
     switch (flag)
     {
     case 1: /* N */
-        snakei--;
+        snake[0].i--;
         break;
     case 2: /* S */
-        snakei++;
+        snake[0].i++;
         break;
     case 3: /* O */
-        snakej--;
+        snake[0].j--;
         break;
     case 4: /* E */
-        snakej++;
+        snake[0].j++;
         break;
     default:
         break;
     }
 
     // If the game is over
-    if (snakei <= 0 || snakei >= height - 1 || snakej <= 0 || snakej >= width - 1)
+    if (snake[0].i <= 0 || snake[0].i >= height - 1 || snake[0].j <= 0 || snake[0].j >= width - 1)
         gameover = 1;
 
     // If snake reaches the fruit, then update the score
-    if (snakei == fruiti && snakej == fruitj)
+    if (snake[0].i == fruiti && snake[0].j == fruitj)
     {
         score++;
         // After eating the above fruit, generate new fruit
