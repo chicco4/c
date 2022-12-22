@@ -30,6 +30,7 @@ void setup()
     height = 10;
     width = 20;
     score = 0;
+    // FIXME the fruit might spawn inside the snake
     srand(time(NULL));
     fruit.i = (rand() % ((height - 1) - 1)) + 1;
     fruit.j = (rand() % ((width - 1) - 1)) + 1;
@@ -37,9 +38,14 @@ void setup()
     // (width * height) massima grandezza di snake
     // snake come array di coordinate
     snake = malloc(sizeof(coordinates) * width * height);
-    snake[0].i = height / 2;
-    snake[0].j = width / 2;
-    snake_lenght = 1;
+    // test tail
+    snake_lenght = 3;
+    snake[0].i = 5;
+    snake[0].j = 10;
+    snake[1].i = 5;
+    snake[1].j = 9;
+    snake[2].i = 5;
+    snake[2].j = 8;
 }
 
 // Function to draw the boundaries
@@ -47,20 +53,28 @@ void setup()
 void draw()
 {
     system("clear");
-    printf("snakei= %d, snakej= %d\n", snake[0].i, snake[0].j); // DEBUG
-    printf("fruiti= %d, fruitj= %d\n", fruit.i, fruit.j);       // DEBUG
-    for (int i = 0; i < height; i++)
+    printf("fruiti= %d, fruitj= %d\n", fruit.i, fruit.j);         // DEBUG
+    printf("snakei= %d, snakej= %d\n", snake[0].i, snake[0].j);   // DEBUG
+    printf("snake1i= %d, snake1j= %d\n", snake[1].i, snake[1].j); // DEBUG
+    printf("snake2i= %d, snake2j= %d\n", snake[2].i, snake[2].j); // DEBUG
+
+    for (int i = 0; i < height; i++) // height
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < width; j++) // width
         {
             if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
                 printf("#");
             else if (i == snake[0].i && j == snake[0].j)
-                printf("o");
+                printf("O");
             else if (i == fruit.i && j == fruit.j)
                 printf("$");
             else
                 printf(" ");
+            for (int k = 1; k < snake_lenght; k++) // tail
+            {
+                if (i == snake[k].i && j == snake[k].j)
+                    printf("o");
+            }
         }
         printf("\n");
     }
@@ -73,6 +87,7 @@ void draw()
 // Function for the logic behind each movement
 void logic()
 {
+    // FIXME dovrei ciclare tutte le coordinate e farle andare verso sinistra
     switch (flag)
     {
     case 1: /* N */
@@ -103,7 +118,7 @@ void logic()
         srand(time(NULL));
         fruit.i = (rand() % ((height - 1) - 1)) + 1;
         fruit.j = (rand() % ((width - 1) - 1)) + 1;
-        // i have to add one piece of the tail
+        // FIXME in someway add one piece of the tail
         snake_lenght++;
     }
 
