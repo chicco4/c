@@ -13,8 +13,7 @@
 // TODO implement snake tail
 
 int height, width;
-int gameover, score;
-int fruiti, fruitj, flag;
+int gameover, score, flag;
 
 typedef struct
 {
@@ -23,6 +22,7 @@ typedef struct
 } coordinates;
 
 coordinates *snake; // snake come array di coordinaate
+coordinates fruit;
 
 // Function to generate the fruit within the boundary
 void setup()
@@ -32,8 +32,8 @@ void setup()
     width = 20;
     score = 0;
     srand(time(NULL));
-    fruiti = (rand() % ((height - 1) - 1)) + 1;
-    fruitj = (rand() % ((width - 1) - 1)) + 1;
+    fruit.i = (rand() % ((height - 1) - 1)) + 1;
+    fruit.j = (rand() % ((width - 1) - 1)) + 1;
 
     // (width * height) massima grandezza di snake
     // snake come array di coordinate
@@ -47,7 +47,7 @@ void draw()
 {
     system("clear");
     printf("snakei= %d, snakej= %d\n", snake[0].i, snake[0].j); // DEBUG
-    printf("fruiti= %d, fruitj= %d\n", fruiti, fruitj);         // DEBUG
+    printf("fruiti= %d, fruitj= %d\n", fruit.i, fruit.j);       // DEBUG
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -56,7 +56,7 @@ void draw()
                 printf("#");
             else if (i == snake[0].i && j == snake[0].j)
                 printf("o");
-            else if (i == fruiti && j == fruitj)
+            else if (i == fruit.i && j == fruit.j)
                 printf("$");
             else
                 printf(" ");
@@ -118,13 +118,13 @@ void logic()
         gameover = 1;
 
     // If snake reaches the fruit, then update the score
-    if (snake[0].i == fruiti && snake[0].j == fruitj)
+    if (snake[0].i == fruit.i && snake[0].j == fruit.j)
     {
         score++;
         // After eating the above fruit, generate new fruit
         srand(time(NULL));
-        fruiti = (rand() % ((height - 1) - 1)) + 1;
-        fruitj = (rand() % ((width - 1) - 1)) + 1;
+        fruit.i = (rand() % ((height - 1) - 1)) + 1;
+        fruit.j = (rand() % ((width - 1) - 1)) + 1;
     }
 
     flag = 0;
