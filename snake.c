@@ -12,7 +12,7 @@
 
 // TODO implement snake tail
 
-int height, width, gameover, score, flag;
+int height, width, gameover, score, flag, snake_lenght;
 
 typedef struct
 {
@@ -68,29 +68,6 @@ void draw()
     printf("press x to quit the game\n");
 }
 
-// Function to take the input
-void input()
-{
-    switch (getchar())
-    {
-    case 'w': /* N */
-        flag = 1;
-        break;
-    case 's': /* S */
-        flag = 2;
-        break;
-    case 'a': /* O */
-        flag = 3;
-        break;
-    case 'd': /* E */
-        flag = 4;
-        break;
-    case 'x':
-        gameover = 1;
-        break;
-    }
-}
-
 // Function for the logic behind each movement
 void logic()
 {
@@ -127,6 +104,29 @@ void logic()
     }
 
     flag = 0;
+}
+
+// Function to take the input
+void input()
+{
+    switch (getchar())
+    {
+    case 'w': /* N */
+        flag = 1;
+        break;
+    case 's': /* S */
+        flag = 2;
+        break;
+    case 'a': /* O */
+        flag = 3;
+        break;
+    case 'd': /* E */
+        flag = 4;
+        break;
+    case 'x':
+        gameover = 1;
+        break;
+    }
 }
 
 void main()
