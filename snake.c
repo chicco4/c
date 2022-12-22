@@ -39,9 +39,11 @@ void setup()
     snake = malloc(sizeof(coordinates) * width * height);
     snake[0].i = height / 2;
     snake[0].j = width / 2;
+    snake_lenght = 1;
 }
 
 // Function to draw the boundaries
+// FIXME add a way to draw the tail of the snake
 void draw()
 {
     system("clear");
@@ -101,6 +103,8 @@ void logic()
         srand(time(NULL));
         fruit.i = (rand() % ((height - 1) - 1)) + 1;
         fruit.j = (rand() % ((width - 1) - 1)) + 1;
+        // i have to add one piece of the tail
+        snake_lenght++;
     }
 
     flag = 0;
