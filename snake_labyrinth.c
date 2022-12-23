@@ -10,9 +10,18 @@
 #include <string.h>
 #include <time.h>
 
-int i, j, height, width;
-int gameover, score;
-int snakei, snakej, fruiti, fruitj, flag;
+// TODO implement snake tail
+
+int height, width, gameover, score, flag, snake_lenght;
+
+typedef struct
+{
+    int i;
+    int j;
+} coordinates;
+
+coordinates *snake; // snake come array di coordinate
+coordinates fruit;
 
 // Function to generate the fruit within the boundary
 void setup()
@@ -20,30 +29,36 @@ void setup()
     gameover = 0;
     height = 10;
     width = 20;
-    snakei = height / 2;
-    snakej = width / 2;
     score = 0;
-
+    // FIXME the fruit might spawn inside the snake
     srand(time(NULL));
-    fruiti = (rand() % ((height - 1) - 1)) + 1;
-    fruitj = (rand() % ((width - 1) - 1)) + 1;
+    fruit.i = (rand() % ((height - 1) - 1)) + 1;
+    fruit.j = (rand() % ((width - 1) - 1)) + 1;
+
+    // (width * height) massima grandezza di snake
+    // snake come array di coordinate
+    snake = malloc(sizeof(coordinates) * width * height);
+    // test tail
+    snake_lenght = 1;
+    snake[0].i = 5;
+    snake[0].j = 10;
 }
 
 // Function to draw the boundaries
+// FIXME add a way to draw the tail of the snake
 void draw()
 {
     system("clear");
-    // printf("snakei= %d, snakej= %d\n", snakei, snakej);// DEBUG
-    // printf("fruiti= %d, fruitj= %d\n", fruiti, fruitj);// DEBUG
-    for (i = 0; i < height; i++)
+
+    for (int i = 0; i < height; i++) // height
     {
-        for (j = 0; j < width; j++)
+        for (int j = 0; j < width; j++) // width
         {
             if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
                 printf("#");
-            else if (i == snakei && j == snakej)
-                printf("o");
-            else if (i == fruiti && j == fruitj)
+            else if (i == snake[0].i && j == snake[0].j)
+                printf("O");
+            else if (i == fruit.i && j == fruit.j)
                 printf("$");
             else
                 printf(" ");
@@ -54,6 +69,47 @@ void draw()
     // Print the score after the game ends
     printf("score = %d\n", score);
     printf("press x to quit the game\n");
+}
+
+// Function for the logic behind each movement
+void logic()
+{
+    // FIXME dovrei ciclare tutte le coordinate e farle andare verso sinistra
+    switch (flag)
+    {
+    case 1: /* N */
+        snake[0].i--;
+        break;
+    case 2: /* S */
+        snake[0].i++;
+        break;
+    case 3: /* O */
+        snake[0].j--;
+        break;
+    case 4: /* E */
+        snake[0].j++;
+        break;
+    default:
+        break;
+    }
+
+    // If the game is over
+    if (snake[0].i <= 0 || snake[0].i >= height - 1 || snake[0].j <= 0 || snake[0].j >= width - 1)
+        gameover = 1;
+
+    // If snake reaches the fruit, then update the score
+    if (snake[0].i == fruit.i && snake[0].j == fruit.j)
+    {
+        score++;
+        // After eating the above fruit, generate new fruit
+        srand(time(NULL));
+        fruit.i = (rand() % ((height - 1) - 1)) + 1;
+        fruit.j = (rand() % ((width - 1) - 1)) + 1;
+        // FIXME in someway add one piece of the tail
+        snake_lenght++;
+    }
+
+    flag = 0;
 }
 
 // Function to take the input
@@ -77,44 +133,6 @@ void input()
         gameover = 1;
         break;
     }
-}
-
-// Function for the logic behind each movement
-void logic()
-{
-    switch (flag)
-    {
-    case 1: /* N */
-        snakei--;
-        break;
-    case 2: /* S */
-        snakei++;
-        break;
-    case 3: /* O */
-        snakej--;
-        break;
-    case 4: /* E */
-        snakej++;
-        break;
-    default:
-        break;
-    }
-
-    // If the game is over
-    if (snakei <= 0 || snakei >= height - 1 || snakej <= 0 || snakej >= width - 1)
-        gameover = 1;
-
-    // If snake reaches the fruit, then update the score
-    if (snakei == fruiti && snakej == fruitj)
-    {
-        score++;
-        // After eating the above fruit, generate new fruit
-        srand(time(NULL));
-        fruiti = (rand() % ((height - 1) - 1)) + 1;
-        fruitj = (rand() % ((width - 1) - 1)) + 1;
-    }
-
-    flag = 0;
 }
 
 void main()

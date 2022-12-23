@@ -58,6 +58,8 @@ void draw()
     printf("snake1i= %d, snake1j= %d\n", snake[1].i, snake[1].j); // DEBUG
     printf("snake2i= %d, snake2j= %d\n", snake[2].i, snake[2].j); // DEBUG
 
+    // FIXME provo a usare un array di char come buffer e quando è coda rimove uno spazio prima
+    char row[width];
     for (int i = 0; i < height; i++) // height
     {
         for (int j = 0; j < width; j++) // width
