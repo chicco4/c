@@ -75,7 +75,7 @@ void draw()
             for (int k = 1; k < snake_lenght; k++) // tail
             {
                 if (i == snake[k].i && j == snake[k].j)
-                    printf("o");
+                    printf("o"); /// non va bene
             }
         }
         printf("\n");

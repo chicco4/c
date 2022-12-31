@@ -11,6 +11,7 @@
 #include <time.h>
 
 // TODO implement snake tail
+// TODO implement scanf for labyrinth
 
 int height, width, gameover, score, flag, snake_lenght;
 
@@ -23,9 +24,13 @@ typedef struct
 coordinates *snake; // snake come array di coordinate
 coordinates fruit;
 
-// Function to generate the fruit within the boundary
+// in setup scanf rows of labyrinth
 void setup()
 {
+    char *labyrinth;
+    char c = scanf("%c");
+
+
     gameover = 0;
     height = 10;
     width = 20;
