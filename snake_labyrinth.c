@@ -27,10 +27,6 @@ coordinates fruit;
 // in setup scanf rows of labyrinth
 void setup()
 {
-    char *labyrinth;
-    char c = scanf("%c");
-
-
     gameover = 0;
     height = 10;
     width = 20;
