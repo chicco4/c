@@ -101,9 +101,7 @@ void checkCollision()
     int i;
     for (i = 1; i < snake_length; i++)
     {
-        if (snake
-                    [0]
-                        .i == snake[i].i &&
+        if (snake[0].i == snake[i].i &&
             snake[0].j == snake[i].j)
         {
             gameover = 1;
