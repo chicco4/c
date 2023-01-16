@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <unistd.h>
 
 int rows, cols, gameover, score, direction, tail_lenght, drill_usages;
 char **board;
@@ -38,9 +37,9 @@ void setup()
         board[i] = (char *)malloc(cols * sizeof(char));
     }
 
+    // scanf board
     for (size_t i = 0; i < rows; i++) // height
     {
-        printf("insert: [%d] row: ", i);
         for (size_t j = 0; j < cols; j++) // width
         {
             scanf("%c", &board[i][j]);
@@ -49,7 +48,6 @@ void setup()
 }
 
 // Function to draw the boundaries
-// FIXME add a way to draw the tail of the snake
 void draw()
 {
     system("clear");
@@ -119,7 +117,6 @@ void free_memory()
 void main()
 {
     setup();
-    // sleep(3);
     draw();
     return;
 
