@@ -14,7 +14,7 @@ typedef struct
 coordinates snake_head;
 coordinates *snake_tail;
 coordinates *coins;
-coordinates *drills;
+coordinates *drill;
 coordinates *traps;
 
 // in setup scanf rows of labyrinth
@@ -26,9 +26,9 @@ void setup()
     drill_usages = 0;
 
     system("clear");
-    printf("input cols: "); // width
+    // printf("input cols: "); // width
     scanf("%d", &cols);
-    printf("input rows: "); // height
+    // printf("input rows: "); // height
     scanf("%d", &rows);
 
     board = (char **)malloc(rows * sizeof(char *));
@@ -38,11 +38,17 @@ void setup()
     }
 
     // scanf board
-    for (size_t i = 0; i < rows; i++) // height
+    // printf("input board:\n");
+    for (size_t i = 0; i < rows; i++)
     {
-        for (size_t j = 0; j < cols; j++) // width
+        for (size_t j = 0; j < cols; j++)
         {
-            scanf("%c", &board[i][j]);
+            char tmp = getchar();
+            if (tmp == '\n')
+            {
+                tmp = getchar();
+            }
+            board[i][j] = tmp;
         }
     }
 }
@@ -50,12 +56,13 @@ void setup()
 // Function to draw the boundaries
 void draw()
 {
-    system("clear");
+    // system("clear");
+    printf("\nboard:\n");
     for (size_t i = 0; i < rows; i++)
     {
         for (size_t j = 0; j < cols; j++)
         {
-            printf("%c ", board[i][j]);
+            printf("%c", board[i][j]);
         }
         printf("\n");
     }
@@ -118,17 +125,4 @@ void main()
 {
     setup();
     draw();
-    return;
-
-    // Until the game is over
-    while (!gameover)
-    {
-
-        // Function Calls
-        draw();
-        input();
-        logic();
-    }
-
-    free_memory();
 }
