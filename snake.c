@@ -66,21 +66,6 @@ void logic()
     }
     direction = 0;
 
-    // check collision with borders
-    if (snake_head.i == 0 || snake_head.i == HEIGHT - 1 || snake_head.j == 0 || snake_head.j == WIDTH - 1)
-    {
-        gameover = 1;
-    }
-
-    // check collision with snake_tail
-    for (size_t i = 0; i < tail_lenght; i++)
-    {
-        if (snake_head.i == snake_tail[i].i && snake_head.j == snake_tail[i].j)
-        {
-            gameover = 1;
-        }
-    }
-
     // if snake reaches the fruit
     if (snake_head.i == fruit.i && snake_head.j == fruit.j)
     {
@@ -104,6 +89,21 @@ void logic()
             snake_tail[i] = snake_tail[i - 1];
         }
         snake_tail[0] = tmp;
+    }
+
+    // check collision with borders
+    if (snake_head.i == 0 || snake_head.i == HEIGHT - 1 || snake_head.j == 0 || snake_head.j == WIDTH - 1)
+    {
+        gameover = 1;
+    }
+
+    // check collision with snake_tail
+    for (size_t i = 0; i < tail_lenght; i++)
+    {
+        if (snake_head.i == snake_tail[i].i && snake_head.j == snake_tail[i].j)
+        {
+            gameover = 1;
+        }
     }
 }
 
