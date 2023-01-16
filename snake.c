@@ -81,7 +81,7 @@ void logic()
         }
     }
 
-    // If snake reaches the fruit
+    // if snake reaches the fruit
     if (snake_head.i == fruit.i && snake_head.j == fruit.j)
     {
         // update score
