@@ -5,7 +5,7 @@
 #define HEIGHT 10
 #define WIDTH 20
 
-int gameover, score, direction, snake_lenght;
+int gameover, score, direction, tail_lenght;
 char board[HEIGHT][WIDTH];
 
 typedef struct
@@ -14,7 +14,8 @@ typedef struct
     int j;
 } coordinates;
 
-coordinates snake[HEIGHT * WIDTH]; // snake as array of coordinates
+coordinates snake_head;
+coordinates snake_tail[HEIGHT * WIDTH];
 coordinates fruit;
 
 void setup()
@@ -23,11 +24,80 @@ void setup()
     gameover = 0;
     score = 0;
 
-    // setup empty board and borders
+    // adding fruit to the board
+    fruit.i = (rand() % (HEIGHT - 2)) + 1;
+    fruit.j = (rand() % (WIDTH - 2)) + 1;
+
+    // adding snake to the board
+    snake_head.i = HEIGHT / 2;
+    snake_head.j = WIDTH / 2;
+
+    // setup tail
+    tail_lenght = 0;
+}
+
+// function for the logic behind each movement
+void logic()
+{
+    // move snake_head
+    switch (direction)
+    {
+    case 1: /* N */
+        snake_head.i--;
+        break;
+    case 2: /* S */
+        snake_head.i++;
+        break;
+    case 3: /* O */
+        snake_head.j--;
+        break;
+    case 4: /* E */
+        snake_head.j++;
+        break;
+    default:
+        break;
+    }
+    direction = 0;
+
+    // check collision with borders
+    if (snake_head.i == 0 || snake_head.i == HEIGHT - 1 || snake_head.j == 0 || snake_head.j == WIDTH - 1)
+    {
+        gameover = 1;
+    }
+
+    // check collision with snake_tail
+    for (size_t i = 0; i < tail_lenght; i++)
+    {
+        if (snake_head.i == snake_tail[i].i && snake_head.j == snake_tail[i].j)
+        {
+            gameover = 1;
+        }
+    }
+
+    // If snake reaches the fruit
+    if (snake_head.i == fruit.i && snake_head.j == fruit.j)
+    {
+        // update score
+        score++;
+
+        // spawn new fruit
+        fruit.i = (rand() % (HEIGHT - 2)) + 1;
+        fruit.j = (rand() % (WIDTH - 2)) + 1;
+
+        // add tail
+        // tail_lenght++;
+    }
+}
+
+// refresh the board and draw it
+void draw()
+{
+    // refresh board
     for (size_t i = 0; i < HEIGHT; i++)
     {
         for (size_t j = 0; j < WIDTH; j++)
         {
+            // borders
             if (i == 0 || i == HEIGHT - 1 || j == 0 || j == WIDTH - 1)
             {
                 board[i][j] = '#';
@@ -38,64 +108,15 @@ void setup()
             }
         }
     }
-
-    // adding fruit to the board
-    fruit.i = (rand() % ((HEIGHT - 1) - 1)) + 1;
-    fruit.j = (rand() % ((WIDTH - 1) - 1)) + 1;
     board[fruit.i][fruit.j] = '$';
-
-    // adding snake to the board
-    snake[0].i = HEIGHT / 2;
-    snake[0].j = WIDTH / 2;
-    snake_lenght = 1;
-    board[snake[0].i][snake[0].j] = 'O';
-}
-
-// Function for the logic behind each movement
-void logic()
-{
-    board[snake[0].i][snake[0].j] = ' ';
-
-    // FIXME dovrei ciclare tutte la tail per farle andare verso sinistra
-    switch (direction)
+    board[snake_head.i][snake_head.j] = 'S';
+    for (size_t k = 0; k < tail_lenght; k++)
     {
-    case 1: /* N */
-        snake[0].i--;
-        break;
-    case 2: /* S */
-        snake[0].i++;
-        break;
-    case 3: /* O */
-        snake[0].j--;
-        break;
-    case 4: /* E */
-        snake[0].j++;
-        break;
-    default:
-        break;
+        board[snake_tail[k].i][snake_tail[k].j] = 's';
     }
-    direction = 0;
 
-    board[snake[0].i][snake[0].j] = 'O';
-
-    if (snake[0].i == fruit.i && snake[0].j == fruit.j)
-    {
-        score++;
-        // spawn new fruit
-        fruit.i = (rand() % ((HEIGHT - 1) - 1)) + 1;
-        fruit.j = (rand() % ((WIDTH - 1) - 1)) + 1;
-        board[fruit.i][fruit.j] = '$';
-        snake_lenght++;
-    }
-}
-
-// FIXME add a way to draw the tail of the snake
-void draw()
-{
-    system("clear");
-    printf("fruiti = %d, fruitj = %d\n", fruit.i, fruit.j);       // DEBUG
-    printf("snakei = %d, snakej = %d\n", snake[0].i, snake[0].j); // DEBUG
     // print board
+    system("clear");
     for (size_t i = 0; i < HEIGHT; i++) // height
     {
         for (size_t j = 0; j < WIDTH; j++) // width
@@ -105,12 +126,12 @@ void draw()
         printf("\n");
     }
 
-    // Print the score after the game ends
+    // print the score after the game ends
     printf("score = %d\n", score);
     printf("press x to quit the game\n");
 }
 
-// Function to take the input
+// function to take the input
 void input()
 {
     switch (getchar())
@@ -137,11 +158,9 @@ void main()
 {
     setup();
 
-    // Until the game is over
+    // until the game is over
     while (!gameover)
     {
-
-        // Function Calls
         draw();
         input();
         logic();
