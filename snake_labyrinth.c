@@ -44,7 +44,7 @@ void setup()
         for (size_t j = 0; j < cols; j++)
         {
             char tmp = getchar();
-            if (tmp == '\n')
+            while (tmp == '\n')
             {
                 tmp = getchar();
             }
