@@ -11,10 +11,10 @@ typedef struct
     int j;
 } coordinates;
 
-coordinates snake_head; // its simpler to separate the head from the tail
+coordinates snake_head;
 coordinates *snake_tail;
 coordinates *coins;
-coordinates *drill;
+coordinates *drills;
 coordinates *traps;
 
 // in setup scanf rows of labyrinth
