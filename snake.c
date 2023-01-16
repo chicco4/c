@@ -39,20 +39,27 @@ void setup()
 // function for the logic behind each movement
 void logic()
 {
+    int moving = 0;
+    coordinates tmp = snake_head;
+
     // move snake_head
     switch (direction)
     {
     case 1: /* N */
         snake_head.i--;
+        moving = 1;
         break;
     case 2: /* S */
         snake_head.i++;
+        moving = 1;
         break;
     case 3: /* O */
         snake_head.j--;
+        moving = 1;
         break;
     case 4: /* E */
         snake_head.j++;
+        moving = 1;
         break;
     default:
         break;
@@ -85,7 +92,18 @@ void logic()
         fruit.j = (rand() % (WIDTH - 2)) + 1;
 
         // add tail
-        // tail_lenght++;
+        tail_lenght++;
+    }
+
+    // if snake is moving
+    if (moving && tail_lenght > 0)
+    {
+        // slide tail
+        for (size_t i = tail_lenght - 1; i > 0; i--)
+        {
+            snake_tail[i] = snake_tail[i - 1];
+        }
+        snake_tail[0] = tmp;
     }
 }
 
@@ -110,9 +128,9 @@ void draw()
     }
     board[fruit.i][fruit.j] = '$';
     board[snake_head.i][snake_head.j] = 'S';
-    for (size_t k = 0; k < tail_lenght; k++)
+    for (size_t i = 0; i < tail_lenght; i++)
     {
-        board[snake_tail[k].i][snake_tail[k].j] = 's';
+        board[snake_tail[i].i][snake_tail[i].j] = 's';
     }
 
     // print board
