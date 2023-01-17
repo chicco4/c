@@ -278,7 +278,6 @@ void input()
     }
 }
 
-// function to take the input
 void random_ai()
 {
     // random move from 1 to 4 included
@@ -302,7 +301,20 @@ void random_ai()
     {
         direction = 4;
     }
-    moves[moves_counter] = move;
+    moves[moves_counter] = direction;
+    moves_counter++;
+    // wait 1 sec each move
+    // sleep(1);
+    // wait 0.5 sec each move
+    usleep(500000);
+}
+
+// wall following algoritm
+void wall_follow_ai()
+{
+    // implementation
+
+    moves[moves_counter] = direction;
     moves_counter++;
     // wait 1 sec each move
     // sleep(1);
