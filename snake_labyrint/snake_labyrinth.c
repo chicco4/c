@@ -306,6 +306,7 @@ void random_ai()
     moves_counter++;
     // wait 1 sec each move
     // sleep(1);
+    // wait 0.5 sec each move
     usleep(500000);
 }
 
