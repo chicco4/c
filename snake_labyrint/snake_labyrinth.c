@@ -38,7 +38,7 @@ void setup()
     {
         board[i] = (char *)malloc(cols * sizeof(char));
     }
-    // FIXME should be remade every time init snake_tail
+    // init snake_tail
     snake_tail = (coordinates *)malloc(rows * cols * sizeof(coordinates));
 
     // scanf board
