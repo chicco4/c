@@ -201,6 +201,7 @@ void input()
 
 void ending()
 {
+    system("clear");
     if (win)
     {
         printf("YOU WON!\n");
@@ -236,6 +237,5 @@ void main()
     }
 
     ending();
-
     free_memory();
 }
