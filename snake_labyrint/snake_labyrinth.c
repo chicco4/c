@@ -336,6 +336,12 @@ void free_memory()
 
     // free snake_tail
     free(snake_tail);
+
+    // free moves
+    if (ai_mode)
+    {
+        free(moves);
+    }
 }
 
 void main()
