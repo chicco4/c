@@ -265,14 +265,22 @@ void main()
 {
     setup();
 
-    // until the game is over
-    while (!gameover)
+    if (mode_ai)
     {
-        draw();
-        input();
-        logic();
+        system("clear");
+        printf("ai in the making..\n");
+    }
+    else
+    {
+        // until the game is over
+        while (!gameover)
+        {
+            draw();
+            input();
+            logic();
+        }
+        ending();
     }
 
-    ending();
     free_memory();
 }
