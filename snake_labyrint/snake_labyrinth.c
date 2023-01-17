@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int rows, cols, gameover, score, direction, tail_lenght, drill_usages;
+int rows, cols, gameover, win, score, direction, tail_lenght, drill_usages;
 char **board;
 
 typedef struct
@@ -18,6 +18,7 @@ coordinates *snake_tail;
 void setup()
 {
     gameover = 0;
+    win = 0;
     score = 1000;
     tail_lenght = 0;
     drill_usages = 0;
@@ -107,6 +108,12 @@ void logic()
         score = score / 2;
     }
 
+    if (board[snake_head.i][snake_head.j] == '_')
+    {
+        win = 1;
+        gameover = 1;
+    }
+
     // if snake reaches the fruit
     if (board[snake_head.i][snake_head.j] == '$')
     {
@@ -192,6 +199,20 @@ void input()
     }
 }
 
+void ending()
+{
+    if (win)
+    {
+        printf("YOU WON!\n");
+        printf("score = %d\n", score);
+    }
+    else
+    {
+        printf("YOU LOST!\n");
+        printf("score = %d\n", score);
+    }
+}
+
 // free the matrix
 void free_memory()
 {
@@ -213,6 +234,8 @@ void main()
         input();
         logic();
     }
+
+    ending();
 
     free_memory();
 }
