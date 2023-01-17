@@ -3,8 +3,9 @@
 #include <time.h>
 #include <unistd.h>
 
-int rows, cols, mode_ai, gameover, win, score, direction, tail_lenght, drill_usages;
+int rows, cols, ai_mode, gameover, win, score, direction, tail_lenght, drill_usages;
 char **board;
+int *ai_moves, counter;
 
 typedef struct
 {
@@ -64,11 +65,12 @@ void setup()
     printf("modalità ai? (n / y)\n");
     if (getchar() == 'n')
     {
-        mode_ai = 0;
+        ai_mode = 0;
     }
     if (getchar() == 'y')
     {
-        mode_ai = 1;
+        ai_mode = 1;
+        ai_moves = (int *)malloc(rows * cols * sizeof(int));
     }
 }
 
@@ -222,7 +224,19 @@ void draw()
     // print the score after the game ends
     printf("drills = %d\n", drill_usages);
     printf("score = %d\n", score);
-    printf("press x to quit the game\n");
+    if (ai_mode)
+    {
+        printf("ai_moves: ");
+        for (size_t i = 0; i < counter; i++)
+        {
+            printf("%d", ai_moves[i]);
+        }
+        printf("\n");
+    }
+    else
+    {
+        printf("press x to quit the game\n");
+    }
 }
 
 // function to take the input
@@ -253,28 +267,30 @@ void random_ai()
 {
     // random move from 1 to 4 included
     srand(time(NULL));
-    int move = (rand() % 3) + 1;
+    // int move = (rand() % 3) + 1;
+    int move = 4;
 
     // check if movement is possible
-    if (board[snake_head.i--][snake_head.j] != '#' && move == 1)
+    if (board[snake_head.i - 1][snake_head.j] != '#' && move == 1)
     {
         direction = 1;
     }
-    if (board[snake_head.i++][snake_head.j] != '#' && move == 2)
+    if (board[snake_head.i + 1][snake_head.j] != '#' && move == 2)
     {
         direction = 2;
     }
-    if (board[snake_head.i][snake_head.j--] != '#' && move == 3)
+    if (board[snake_head.i][snake_head.j - 1] != '#' && move == 3)
     {
         direction = 3;
     }
-    if (board[snake_head.i][snake_head.j++] != '#' && move == 4)
+    if (board[snake_head.i][snake_head.j + 1] != '#' && move == 4)
     {
         direction = 4;
     }
-
+    ai_moves[counter] = move;
+    counter++;
     // wait 1 sec each move
-    sleep(1);
+    sleep(2);
 }
 
 void ending()
@@ -313,7 +329,7 @@ void main()
     while (!gameover)
     {
         draw();
-        if (mode_ai)
+        if (ai_mode)
         {
             random_ai();
         }
