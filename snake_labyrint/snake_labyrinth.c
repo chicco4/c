@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
 
 int rows, cols, mode_ai, gameover, win, score, direction, tail_lenght, drill_usages;
 char **board;
@@ -87,20 +89,32 @@ void logic()
     switch (direction)
     {
     case 1: /* N */
-        snake_head.i--;
-        moving = 1;
+        if (snake_head.i > 0)
+        {
+            snake_head.i--;
+            moving = 1;
+        }
         break;
     case 2: /* S */
-        snake_head.i++;
-        moving = 1;
+        if (snake_head.i < rows - 1)
+        {
+            snake_head.i++;
+            moving = 1;
+        }
         break;
     case 3: /* O */
-        snake_head.j--;
-        moving = 1;
+        if (snake_head.j > 0)
+        {
+            snake_head.j--;
+            moving = 1;
+        }
         break;
     case 4: /* E */
-        snake_head.j++;
-        moving = 1;
+        if (snake_head.i < cols - 1)
+        {
+            snake_head.j++;
+            moving = 1;
+        }
         break;
     default:
         break;
@@ -195,6 +209,7 @@ void logic()
 void draw()
 {
     system("clear");
+    // printf("snakehead[%d][%d]\n", snake_head.i, snake_head.j); // debug
     for (size_t i = 0; i < rows; i++)
     {
         for (size_t j = 0; j < cols; j++)
@@ -234,10 +249,32 @@ void input()
 }
 
 // function to take the input
-void input_ai()
+void random_ai()
 {
+    // random move from 1 to 4 included
+    srand(time(NULL));
+    int move = (rand() % 3) + 1;
+
+    // check if movement is possible
+    if (board[snake_head.i--][snake_head.j] != '#' && move == 1)
+    {
+        direction = 1;
+    }
+    if (board[snake_head.i++][snake_head.j] != '#' && move == 2)
+    {
+        direction = 2;
+    }
+    if (board[snake_head.i][snake_head.j--] != '#' && move == 3)
+    {
+        direction = 3;
+    }
+    if (board[snake_head.i][snake_head.j++] != '#' && move == 4)
+    {
+        direction = 4;
+    }
+
+    // wait 1 sec each move
     sleep(1);
-    direction = 4;
 }
 
 void ending()
@@ -278,7 +315,7 @@ void main()
         draw();
         if (mode_ai)
         {
-            input_ai();
+            random_ai();
         }
         else
         {
