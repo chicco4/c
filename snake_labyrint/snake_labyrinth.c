@@ -108,6 +108,11 @@ void logic()
         score = score / 2;
     }
 
+    if (board[snake_head.i][snake_head.j] == 'T')
+    {
+        drill_usages = drill_usages + 3;
+    }
+
     if (board[snake_head.i][snake_head.j] == '_')
     {
         win = 1;
@@ -138,7 +143,15 @@ void logic()
     // check collision with borders
     if (board[snake_head.i][snake_head.j] == '#')
     {
-        gameover = 1;
+        // use drill to not die
+        if (drill_usages > 0)
+        {
+            drill_usages--;
+        }
+        else
+        {
+            gameover = 1;
+        }
     }
 
     // check collision with snake_tail
