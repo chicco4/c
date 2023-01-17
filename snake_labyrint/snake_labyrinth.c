@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 int rows, cols, mode_ai, gameover, win, score, direction, tail_lenght, drill_usages;
 char **board;
@@ -234,6 +233,13 @@ void input()
     }
 }
 
+// function to take the input
+void input_ai()
+{
+    sleep(1);
+    direction = 4;
+}
+
 void ending()
 {
     system("clear");
@@ -266,22 +272,21 @@ void main()
 {
     setup();
 
-    if (mode_ai)
+    // until the game is over
+    while (!gameover)
     {
-        system("clear");
-        printf("ai in the making..\n");
-    }
-    else
-    {
-        // until the game is over
-        while (!gameover)
+        draw();
+        if (mode_ai)
         {
-            draw();
-            input();
-            logic();
+            input_ai();
         }
-        ending();
+        else
+        {
+            input();
+        }
+        logic();
     }
+    ending();
 
     free_memory();
 }
