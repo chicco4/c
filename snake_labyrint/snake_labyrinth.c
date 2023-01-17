@@ -96,9 +96,15 @@ void logic()
     }
     direction = 0;
 
+    // every move score--
     if (moving)
     {
         score--;
+    }
+
+    if (board[snake_head.i][snake_head.j] == '!')
+    {
+        score = score / 2;
     }
 
     // if snake reaches the fruit
