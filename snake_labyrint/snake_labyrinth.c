@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int rows, cols, gameover, win, score, direction, tail_lenght, drill_usages;
+int rows, cols, mode_ai, gameover, win, score, direction, tail_lenght, drill_usages;
 char **board;
 
 typedef struct
@@ -57,6 +57,16 @@ void setup()
                 snake_head.j = j;
             }
         }
+    }
+
+    printf("modalità ai? (n / y)\n");
+    if (getchar() == 'n')
+    {
+        mode_ai = 0;
+    }
+    if (getchar() == 'y')
+    {
+        mode_ai = 1;
     }
 }
 
@@ -185,6 +195,7 @@ void logic()
 void draw()
 {
     system("clear");
+    printf(mode_ai ? "mode_ai true\n" : "mode_ai false\n");
     for (size_t i = 0; i < rows; i++)
     {
         for (size_t j = 0; j < cols; j++)
