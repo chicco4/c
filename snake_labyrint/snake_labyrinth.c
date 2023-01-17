@@ -36,7 +36,7 @@ void setup()
         board[i] = (char *)malloc(cols * sizeof(char));
     }
     // FIXME should be remade every time init snake_tail
-    snake_tail = (coordinates *)malloc(100 * sizeof(coordinates));
+    snake_tail = (coordinates *)malloc(rows * cols * sizeof(coordinates));
 
     // scanf board
     // printf("input board:\n");
@@ -103,23 +103,27 @@ void logic()
         score--;
     }
 
+    // if snake reach a trap
     if (board[snake_head.i][snake_head.j] == '!')
     {
         score = score / 2;
+        tail_lenght = tail_lenght / 2;
     }
 
+    // if snake reach a drill
     if (board[snake_head.i][snake_head.j] == 'T')
     {
         drill_usages = drill_usages + 3;
     }
 
+    // if snake reach the exit
     if (board[snake_head.i][snake_head.j] == '_')
     {
         win = 1;
         gameover = 1;
     }
 
-    // if snake reaches the fruit
+    // if snake reach a coin
     if (board[snake_head.i][snake_head.j] == '$')
     {
         // update score
@@ -159,8 +163,14 @@ void logic()
     {
         if (snake_head.i == snake_tail[i].i && snake_head.j == snake_tail[i].j)
         {
-            gameover = 1;
+            score = score - (10 * (tail_lenght - i));
+            tail_lenght = tail_lenght - (tail_lenght - i);
         }
+    }
+
+    if (score <= 0)
+    {
+        gameover = 1;
     }
 
     // refresh board
@@ -227,14 +237,17 @@ void ending()
     }
 }
 
-// free the matrix
 void free_memory()
 {
+    // free board
     for (int i = 0; i < rows; i++)
     {
         free(board[i]);
     }
     free(board);
+
+    // free snake_tail
+    free(snake_tail);
 }
 
 void main()
