@@ -24,6 +24,7 @@ void setup()
     drill_usages = 0;
 
     system("clear");
+    printf("insert labyrint:\n");
     // printf("input cols: "); // width
     scanf("%d", &cols);
     // printf("input rows: "); // height
@@ -195,7 +196,6 @@ void logic()
 void draw()
 {
     system("clear");
-    printf(mode_ai ? "mode_ai true\n" : "mode_ai false\n");
     for (size_t i = 0; i < rows; i++)
     {
         for (size_t j = 0; j < cols; j++)
@@ -206,6 +206,7 @@ void draw()
     }
 
     // print the score after the game ends
+    printf("drills = %d\n", drill_usages);
     printf("score = %d\n", score);
     printf("press x to quit the game\n");
 }
