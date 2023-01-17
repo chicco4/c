@@ -18,7 +18,7 @@ coordinates *snake_tail;
 void setup()
 {
     gameover = 0;
-    score = 0;
+    score = 1000;
     tail_lenght = 0;
     drill_usages = 0;
 
@@ -65,26 +65,29 @@ void logic()
     int moving = 0;
     coordinates tmp = snake_head;
 
+    // clear board
+    board[snake_head.i][snake_head.j] = ' ';
+    for (size_t i = 0; i < tail_lenght; i++)
+    {
+        board[snake_tail[i].i][snake_tail[i].j] = ' ';
+    }
+
     // move snake_head
     switch (direction)
     {
     case 1: /* N */
-        board[snake_head.i][snake_head.j] = ' ';
         snake_head.i--;
         moving = 1;
         break;
     case 2: /* S */
-        board[snake_head.i][snake_head.j] = ' ';
         snake_head.i++;
         moving = 1;
         break;
     case 3: /* O */
-        board[snake_head.i][snake_head.j] = ' ';
         snake_head.j--;
         moving = 1;
         break;
     case 4: /* E */
-        board[snake_head.i][snake_head.j] = ' ';
         snake_head.j++;
         moving = 1;
         break;
@@ -93,17 +96,20 @@ void logic()
     }
     direction = 0;
 
-    board[snake_head.i][snake_head.j] = 'o';
+    if (moving)
+    {
+        score--;
+    }
 
     // if snake reaches the fruit
-    // if (snake_head.i == fruit.i && snake_head.j == fruit.j)
-    // {
-    //     // update score
-    //     score++;
+    if (board[snake_head.i][snake_head.j] == '$')
+    {
+        // update score
+        score = score + 10;
 
-    //     // add tail
-    //     tail_lenght++;
-    // }
+        // add tail
+        tail_lenght++;
+    }
 
     // if snake is moving
     if (moving && tail_lenght > 0)
@@ -117,10 +123,10 @@ void logic()
     }
 
     // check collision with borders
-    // if (snake_head.i == 0 || snake_head.i == rows - 1 || snake_head.j == 0 || snake_head.j == cols - 1)
-    // {
-    //     gameover = 1;
-    // }
+    if (board[snake_head.i][snake_head.j] == '#')
+    {
+        gameover = 1;
+    }
 
     // check collision with snake_tail
     for (size_t i = 0; i < tail_lenght; i++)
@@ -129,6 +135,13 @@ void logic()
         {
             gameover = 1;
         }
+    }
+
+    // refresh board
+    board[snake_head.i][snake_head.j] = 'o';
+    for (size_t i = 0; i < tail_lenght; i++)
+    {
+        board[snake_tail[i].i][snake_tail[i].j] = 's';
     }
 }
 
