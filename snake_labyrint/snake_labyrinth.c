@@ -5,7 +5,7 @@
 
 int rows, cols, ai_mode, gameover, win, score, direction, tail_lenght, drill_usages;
 char **board;
-int *ai_moves, counter;
+int *moves, moves_counter;
 
 typedef struct
 {
@@ -70,7 +70,7 @@ void setup()
     if (getchar() == 'y')
     {
         ai_mode = 1;
-        ai_moves = (int *)malloc(rows * cols * sizeof(int));
+        moves = (int *)malloc(rows * cols * sizeof(int));
     }
 }
 
@@ -227,9 +227,25 @@ void draw()
     if (ai_mode)
     {
         printf("ai_moves: ");
-        for (size_t i = 0; i < counter; i++)
+        for (size_t i = 0; i < moves_counter; i++)
         {
-            printf("%d", ai_moves[i]);
+            switch (moves[i])
+            {
+            case 1: /* N */
+                printf("N");
+                break;
+            case 2: /* S */
+                printf("S");
+                break;
+            case 3: /* O */
+                printf("O");
+                break;
+            case 4: /* E */
+                printf("E");
+                break;
+            default:
+                break;
+            }
         }
         printf("\n");
     }
@@ -287,8 +303,8 @@ void random_ai()
     {
         direction = 4;
     }
-    ai_moves[counter] = move;
-    counter++;
+    moves[moves_counter] = move;
+    moves_counter++;
     // wait 1 sec each move
     // sleep(1);
     usleep(500000);
