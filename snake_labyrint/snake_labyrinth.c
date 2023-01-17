@@ -267,8 +267,8 @@ void random_ai()
 {
     // random move from 1 to 4 included
     srand(time(NULL));
-    // int move = (rand() % 3) + 1;
-    int move = 4;
+    int move = (rand() % 4) + 1;
+    // int move = 4;
 
     // check if movement is possible
     if (board[snake_head.i - 1][snake_head.j] != '#' && move == 1)
@@ -290,7 +290,8 @@ void random_ai()
     ai_moves[counter] = move;
     counter++;
     // wait 1 sec each move
-    sleep(2);
+    // sleep(1);
+    usleep(500000);
 }
 
 void ending()
