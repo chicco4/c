@@ -1,10 +1,9 @@
 /**
  * @file snake_labyrinth.c
  * @author federico scaggiante
- * @brief a simple game where a snake tries to escape from labyrinth
+ * @brief a simple game where a snake tries to escape from a labyrinth
  * @version 0.1
  * @date 2023-01-05
- * @copyright Copyright (c) 2023
  */
 
 #include <stdio.h>
@@ -12,7 +11,7 @@
 #include <time.h>
 #include <unistd.h>
 
-/**number of rows in the board*/
+/**number of rows in the board**/
 int rows;
 /**number of cols in the board*/
 int cols;
