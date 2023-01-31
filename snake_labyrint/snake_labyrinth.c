@@ -1,22 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
+/**
+ * @file snake_labyrinth.c
+ * @author federico scaggiante
+ * @brief a simple game where a snake tries to escape from labyrinth
+ * @version 0.1
+ * @date 2023-01-05
+ *
+ * @copyright Copyright (c) 2023
+ *
+ * @section install_sec installation
+ * @subsection step1: install gcc
+ * @subsection step2: gcc -O2 -std=c99 --pedantic *.c -o snake_labyrinth.c
+ */
 
-int rows, cols, ai_mode, gameover, win, score, direction, tail_lenght, drill_usages;
-char **board;
-int *moves, moves_counter;
+#include "snake_labyrinth.h"
 
-typedef struct
-{
-    int i;
-    int j;
-} coordinates;
-
-coordinates snake_head;
-coordinates *snake_tail;
-
-// in setup scanf rows of labyrinth
 void setup()
 {
     gameover = 0;
@@ -70,11 +67,11 @@ void setup()
     if (getchar() == 'y')
     {
         ai_mode = 1;
+        // arbitrary big array
         moves = (int *)malloc(rows * cols * sizeof(int));
     }
 }
 
-// function for the logic behind each movement
 void logic()
 {
     int moving = 0;
@@ -207,7 +204,6 @@ void logic()
     }
 }
 
-// refresh the board and draw it
 void draw()
 {
     system("clear");
@@ -227,7 +223,7 @@ void draw()
     if (ai_mode)
     {
         printf("ai_moves: ");
-        for (size_t i = 0; i < moves_counter; i++)
+        for (size_t i = 0; i < moves_lenght; i++)
         {
             switch (moves[i])
             {
@@ -255,7 +251,6 @@ void draw()
     }
 }
 
-// function to take the input
 void input()
 {
     switch (getchar())
@@ -301,21 +296,20 @@ void random_ai()
     {
         direction = 4;
     }
-    moves[moves_counter] = direction;
-    moves_counter++;
+    moves[moves_lenght] = direction;
+    moves_lenght++;
     // wait 1 sec each move
     // sleep(1);
     // wait 0.5 sec each move
     usleep(500000);
 }
 
-// wall following algoritm
 void wall_follow_ai()
 {
     // implementation
 
-    moves[moves_counter] = direction;
-    moves_counter++;
+    moves[moves_lenght] = direction;
+    moves_lenght++;
     // wait 1 sec each move
     // sleep(1);
     // wait 0.5 sec each move
@@ -360,7 +354,6 @@ void main()
 {
     setup();
 
-    // until the game is over
     while (!gameover)
     {
         draw();
