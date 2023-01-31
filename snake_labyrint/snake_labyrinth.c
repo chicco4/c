@@ -2,12 +2,12 @@
  * @file snake_labyrinth.c
  * @author federico scaggiante
  * @brief a simple game where a snake tries to escape from a labyrinth
- * @version 0.1
  * @date 2023-01-05
+ * @mainpage main snake_labyrinth program
  *
  * @section install_sec installation
- * @subsection step1: install gcc
- * @subsection step2: gcc -O2 -std=c99 --pedantic *.c -o snake_labyrinth.c
+ * @subsection step1 step1: install gcc
+ * @subsection step2 step2: gcc -O2 -std=c99 --pedantic *.c -o snake_labyrinth.c
  */
 
 #include "snake_labyrinth.h"

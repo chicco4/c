@@ -2,7 +2,6 @@
  * @file snake_labyrinth.c
  * @author federico scaggiante
  * @brief a simple game where a snake tries to escape from a labyrinth
- * @version 0.1
  * @date 2023-01-05
  */
 
@@ -11,7 +10,7 @@
 #include <time.h>
 #include <unistd.h>
 
-/**number of rows in the board**/
+/**number of rows in the board*/
 int rows;
 /**number of cols in the board*/
 int cols;
@@ -35,7 +34,10 @@ int ai_mode;
 int *moves;
 /**moves counter*/
 int moves_lenght;
-/**util struct that represent a coordinate*/
+/**
+ * @brief structure that represent a coordinate
+ * @details made with two i and j integers
+ */
 typedef struct
 {
     int i;
@@ -68,7 +70,30 @@ void random_ai();
 void wall_follow_ai();
 /**print ending massage according to the win flag, also print the score*/
 void ending();
-/*it frees the varius all the dinamically allocated memory*/
+/**it frees the varius all the dinamically allocated memory*/
 void free_memory();
-/**main loop*/
+/**
+ * @brief main loop
+ *
+ * \code{.c}
+ * setup();
+
+    while (!gameover)
+    {
+        draw();
+        if (ai_mode)
+        {
+            random_ai();
+        }
+        else
+        {
+            input();
+        }
+        logic();
+    }
+    ending();
+
+    free_memory();
+  \endcode
+ */
 void main();

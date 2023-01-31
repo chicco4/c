@@ -1,0 +1,40 @@
+\hypertarget{snake__labyrinth_8h_source}{}\doxysection{snake\+\_\+labyrinth.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <unistd.h>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{14 \textcolor{keywordtype}{int} rows;}
+\DoxyCodeLine{16 \textcolor{keywordtype}{int} cols;}
+\DoxyCodeLine{18 \textcolor{keywordtype}{char} **board;}
+\DoxyCodeLine{20 \textcolor{keywordtype}{int} gameover;}
+\DoxyCodeLine{22 \textcolor{keywordtype}{int} win;}
+\DoxyCodeLine{24 \textcolor{keywordtype}{int} score;}
+\DoxyCodeLine{26 \textcolor{keywordtype}{int} direction;}
+\DoxyCodeLine{28 \textcolor{keywordtype}{int} tail\_lenght;}
+\DoxyCodeLine{30 \textcolor{keywordtype}{int} drill\_usages;}
+\DoxyCodeLine{32 \textcolor{keywordtype}{int} ai\_mode;}
+\DoxyCodeLine{34 \textcolor{keywordtype}{int} *moves;}
+\DoxyCodeLine{36 \textcolor{keywordtype}{int} moves\_lenght;}
+\DoxyCodeLine{41 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{44     \textcolor{keywordtype}{int} j;}
+\DoxyCodeLine{45 \} \mbox{\hyperlink{structcoordinates}{coordinates}};}
+\DoxyCodeLine{47 \mbox{\hyperlink{structcoordinates}{coordinates}} snake\_head;}
+\DoxyCodeLine{49 \mbox{\hyperlink{structcoordinates}{coordinates}} *snake\_tail;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{52 \textcolor{keywordtype}{void} setup();}
+\DoxyCodeLine{54 \textcolor{keywordtype}{void} logic();}
+\DoxyCodeLine{56 \textcolor{keywordtype}{void} draw();}
+\DoxyCodeLine{61 \textcolor{keywordtype}{void} input();}
+\DoxyCodeLine{65 \textcolor{keywordtype}{void} random\_ai();}
+\DoxyCodeLine{70 \textcolor{keywordtype}{void} wall\_follow\_ai();}
+\DoxyCodeLine{72 \textcolor{keywordtype}{void} ending();}
+\DoxyCodeLine{74 \textcolor{keywordtype}{void} free\_memory();}
+\DoxyCodeLine{99 \textcolor{keywordtype}{void} main();}
+
+\end{DoxyCode}
