@@ -62,13 +62,13 @@ coordinates snake_head;
 /**array of coordinates that rappresent the tail of the snake*/
 coordinates *snake_tail;
 
-/**function that scanf rows, cols and the labyrinth and also init most variables used in the game*/
+/**dove vengono richieste il numero di colonne, righe e il labirinto e poi vengono inizializzate tutte le variabili necessario al funzionamento del gioco.*/
 void setup();
 
-/**function that implements the logic of the game every time the snake moves*/
+/**funzione principale del gioco che controlla dopo che ogni mossa viene inserita, se lo snake può muoversi in quella direzione e successivamente controllo tutte le possibili collisioni e gestisce il movimento della coda.*/
 void logic();
 
-/**refresh the board and draw it*/
+/**dopo ogni mossa refresha e ridisegna il labyrinto stampando anche il punteggio e il numero di utilizzi del trapano rimasti. Se è l’AI ha giocare mostra anche tutte le mosse intraprese.*/
 void draw();
 
 /**

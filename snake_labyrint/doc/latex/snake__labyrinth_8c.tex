@@ -1,0 +1,134 @@
+\hypertarget{snake__labyrinth_8c}{}\doxysection{snake\+\_\+labyrinth.\+c File Reference}
+\label{snake__labyrinth_8c}\index{snake\_labyrinth.c@{snake\_labyrinth.c}}
+
+
+a simple game where a snake tries to escape from a labyrinth  
+
+
+{\ttfamily \#include \char`\"{}snake\+\_\+labyrinth.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{snake__labyrinth_8c_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\item 
+void \mbox{\hyperlink{snake__labyrinth_8c_a891ab028bd00ce90bbf291a355410e1e}{logic}} ()
+\item 
+void \mbox{\hyperlink{snake__labyrinth_8c_a56c5cf8a568cff737ff95520cbe6b405}{draw}} ()
+\item 
+void \mbox{\hyperlink{snake__labyrinth_8c_ac3bdbc826d19fb41ffb25470527c3801}{input}} ()
+\begin{DoxyCompactList}\small\item\em simple function that changes the direction flag from user input \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{snake__labyrinth_8c_a5295ff237b6e72ba0092892aa1313c3c}\label{snake__labyrinth_8c_a5295ff237b6e72ba0092892aa1313c3c}} 
+void {\bfseries random\+\_\+ai} ()
+\begin{DoxyCompactList}\small\item\em simple function that pick a random direction after checking if possible to make \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{snake__labyrinth_8c_a4b8ce4ea09fce2022d9bc299ed7432dc}{wall\+\_\+follow\+\_\+ai}} ()
+\begin{DoxyCompactList}\small\item\em function that allows the snake to follow the right wall of the labyrinth untill it reaches the end \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{snake__labyrinth_8c_a893d1bcb960a17b354855c3bd338c298}{ending}} ()
+\item 
+void \mbox{\hyperlink{snake__labyrinth_8c_a9f81a9a3690fcba7180fa860e0c2422f}{free\+\_\+memory}} ()
+\item 
+void \mbox{\hyperlink{snake__labyrinth_8c_acdef7a1fd863a6d3770c1268cb06add3}{main}} ()
+\begin{DoxyCompactList}\small\item\em main loop \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a simple game where a snake tries to escape from a labyrinth 
+
+\begin{DoxyAuthor}{Author}
+federico scaggiante 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2023-\/01-\/05
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+federico scaggiante 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{snake__labyrinth_8c_a56c5cf8a568cff737ff95520cbe6b405}\label{snake__labyrinth_8c_a56c5cf8a568cff737ff95520cbe6b405}} 
+\index{snake\_labyrinth.c@{snake\_labyrinth.c}!draw@{draw}}
+\index{draw@{draw}!snake\_labyrinth.c@{snake\_labyrinth.c}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+dopo ogni mossa refresha e ridisegna il labyrinto stampando anche il punteggio e il numero di utilizzi del trapano rimasti. Se è l’\+AI ha giocare mostra anche tutte le mosse intraprese. \mbox{\Hypertarget{snake__labyrinth_8c_a893d1bcb960a17b354855c3bd338c298}\label{snake__labyrinth_8c_a893d1bcb960a17b354855c3bd338c298}} 
+\index{snake\_labyrinth.c@{snake\_labyrinth.c}!ending@{ending}}
+\index{ending@{ending}!snake\_labyrinth.c@{snake\_labyrinth.c}}
+\doxysubsubsection{\texorpdfstring{ending()}{ending()}}
+{\footnotesize\ttfamily void ending (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+print ending massage according to the win flag, also print the score \mbox{\Hypertarget{snake__labyrinth_8c_a9f81a9a3690fcba7180fa860e0c2422f}\label{snake__labyrinth_8c_a9f81a9a3690fcba7180fa860e0c2422f}} 
+\index{snake\_labyrinth.c@{snake\_labyrinth.c}!free\_memory@{free\_memory}}
+\index{free\_memory@{free\_memory}!snake\_labyrinth.c@{snake\_labyrinth.c}}
+\doxysubsubsection{\texorpdfstring{free\_memory()}{free\_memory()}}
+{\footnotesize\ttfamily void free\+\_\+memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+it frees the all the dinamically allocated memory \mbox{\Hypertarget{snake__labyrinth_8c_ac3bdbc826d19fb41ffb25470527c3801}\label{snake__labyrinth_8c_ac3bdbc826d19fb41ffb25470527c3801}} 
+\index{snake\_labyrinth.c@{snake\_labyrinth.c}!input@{input}}
+\index{input@{input}!snake\_labyrinth.c@{snake\_labyrinth.c}}
+\doxysubsubsection{\texorpdfstring{input()}{input()}}
+{\footnotesize\ttfamily void input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+simple function that changes the direction flag from user input 
+
+the current input choice is wasd style
+
+it uses the get\+Char() function; \mbox{\Hypertarget{snake__labyrinth_8c_a891ab028bd00ce90bbf291a355410e1e}\label{snake__labyrinth_8c_a891ab028bd00ce90bbf291a355410e1e}} 
+\index{snake\_labyrinth.c@{snake\_labyrinth.c}!logic@{logic}}
+\index{logic@{logic}!snake\_labyrinth.c@{snake\_labyrinth.c}}
+\doxysubsubsection{\texorpdfstring{logic()}{logic()}}
+{\footnotesize\ttfamily void logic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+funzione principale del gioco che controlla dopo che ogni mossa viene inserita, se lo snake può muoversi in quella direzione e successivamente controllo tutte le possibili collisioni e gestisce il movimento della coda. \mbox{\Hypertarget{snake__labyrinth_8c_acdef7a1fd863a6d3770c1268cb06add3}\label{snake__labyrinth_8c_acdef7a1fd863a6d3770c1268cb06add3}} 
+\index{snake\_labyrinth.c@{snake\_labyrinth.c}!main@{main}}
+\index{main@{main}!snake\_labyrinth.c@{snake\_labyrinth.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily void main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+main loop 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{setup();}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{keywordflow}{while} (!gameover)}
+\DoxyCodeLine{ \{}
+\DoxyCodeLine{     draw();}
+\DoxyCodeLine{     \textcolor{keywordflow}{if} (ai\_mode)}
+\DoxyCodeLine{     \{}
+\DoxyCodeLine{         random\_ai();}
+\DoxyCodeLine{     \}}
+\DoxyCodeLine{     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{     \{}
+\DoxyCodeLine{         input();}
+\DoxyCodeLine{     \}}
+\DoxyCodeLine{     logic();}
+\DoxyCodeLine{ \}}
+\DoxyCodeLine{ ending();}
+\DoxyCodeLine{}
+\DoxyCodeLine{ free\_memory();}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{snake__labyrinth_8c_a4fc01d736fe50cf5b977f755b675f11d}\label{snake__labyrinth_8c_a4fc01d736fe50cf5b977f755b675f11d}} 
+\index{snake\_labyrinth.c@{snake\_labyrinth.c}!setup@{setup}}
+\index{setup@{setup}!snake\_labyrinth.c@{snake\_labyrinth.c}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+dove vengono richieste il numero di colonne, righe e il labirinto e poi vengono inizializzate tutte le variabili necessario al funzionamento del gioco. \mbox{\Hypertarget{snake__labyrinth_8c_a4b8ce4ea09fce2022d9bc299ed7432dc}\label{snake__labyrinth_8c_a4b8ce4ea09fce2022d9bc299ed7432dc}} 
+\index{snake\_labyrinth.c@{snake\_labyrinth.c}!wall\_follow\_ai@{wall\_follow\_ai}}
+\index{wall\_follow\_ai@{wall\_follow\_ai}!snake\_labyrinth.c@{snake\_labyrinth.c}}
+\doxysubsubsection{\texorpdfstring{wall\_follow\_ai()}{wall\_follow\_ai()}}
+{\footnotesize\ttfamily void wall\+\_\+follow\+\_\+ai (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+function that allows the snake to follow the right wall of the labyrinth untill it reaches the end 
+
+\begin{DoxyAttention}{Attention}
+not yet implemented 
+\end{DoxyAttention}

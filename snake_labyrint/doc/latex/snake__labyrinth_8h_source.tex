@@ -1,0 +1,62 @@
+\hypertarget{snake__labyrinth_8h_source}{}\doxysection{snake\+\_\+labyrinth.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <unistd.h>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{14 \textcolor{keywordtype}{int} rows;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{17 \textcolor{keywordtype}{int} cols;}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{20 \textcolor{keywordtype}{char} **board;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{23 \textcolor{keywordtype}{int} gameover;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{26 \textcolor{keywordtype}{int} win;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{keywordtype}{int} score;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{32 \textcolor{keywordtype}{int} direction;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{35 \textcolor{keywordtype}{int} tail\_lenght;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{38 \textcolor{keywordtype}{int} drill\_usages;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{41 \textcolor{keywordtype}{int} ai\_mode;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{44 \textcolor{keywordtype}{int} *moves;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{47 \textcolor{keywordtype}{int} moves\_lenght;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{53 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{54 \{}
+\DoxyCodeLine{55     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{56     \textcolor{keywordtype}{int} j;}
+\DoxyCodeLine{57 \} \mbox{\hyperlink{structcoordinates}{coordinates}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{60 \mbox{\hyperlink{structcoordinates}{coordinates}} snake\_head;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{63 \mbox{\hyperlink{structcoordinates}{coordinates}} *snake\_tail;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{66 \textcolor{keywordtype}{void} setup();}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{69 \textcolor{keywordtype}{void} logic();}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{72 \textcolor{keywordtype}{void} draw();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{79 \textcolor{keywordtype}{void} input();}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{84 \textcolor{keywordtype}{void} random\_ai();}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{90 \textcolor{keywordtype}{void} wall\_follow\_ai();}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{93 \textcolor{keywordtype}{void} ending();}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{96 \textcolor{keywordtype}{void} free\_memory();}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{122 \textcolor{keywordtype}{void} main();}
+
+\end{DoxyCode}
