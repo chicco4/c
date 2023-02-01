@@ -62,7 +62,7 @@ coordinates snake_head;
 /**array of coordinates that rappresent the tail of the snake*/
 coordinates *snake_tail;
 
-/**function that scanf rows, cols and the labyrinth*/
+/**function that scanf rows, cols and the labyrinth and also init most variables used in the game*/
 void setup();
 
 /**function that implements the logic of the game every time the snake moves*/
@@ -73,6 +73,7 @@ void draw();
 
 /**
  * @brief simple function that changes the direction flag from user input
+ * @details the current input choice is wasd style
  * @details it uses the getChar() function;
  */
 void input();

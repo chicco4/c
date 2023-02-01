@@ -9,9 +9,8 @@
  * This program is a snake game that take place in a labyrinth.<br>
  * At the start you have to input throgh terminal the number of cols and rows the labyrinth is made of, then you can enter the labyrinth.
  *
- * @subsection input input example:
- *
- * \code{.c}
+ * @subsection rules rules of the game
+ * * \code{.c}
 19
 10
 ###################
@@ -26,15 +25,36 @@ o    #          $ #
 ###################
  * \endcode
  *
- * @subsection rules rules of the game
- * The game rules are simple.<br>
- * The figure above represents a labyrinth where our protagonist Snake o has to find the exit _.<br>
- * Snake navigate the maze collecting or avoiding objects in the gameboard until you reach the exit.<br>
- * Everything item can increase or decrease our hero's score.<br>
- * The length of the path is also important because Snake wants to get out as soon as possible.<br>
- * The objective of the game is to find the best path to the exit of the labyrinth.<br>
- * The best is the path that produces the highest score.<br>
- * This means the best path is not simply the shortest.<br>
+ * La figura sopra rappresenta un labirinto dove il nostro protagonista Snake o deve trovare l’uscita _.<br>
+ * Snake percorre il labirinto raccogliendo o evitando gli oggetti nel piano di gioco finché non raggiunge l’uscita.<br>
+ * Ogni oggetto può aumentare o diminuire il punteggio del nostro eroe. Anche la lunghezza del percorso è importante perché Snake vuole uscire il prima possibile.<br>
+ * <b>L’obiettivo del gioco è di trovare il miglior percorso che porta all’uscita del labirinto.<\b><br>
+ * Per migliore si intende il percorso che produce il punteggio più elevato.<br>
+ * Ciò significa che il percorso migliore non è semplicemente il più breve.<br>
+ * @subsubsection Mosse possibili
+ * Inizialmente Snake ha 1000 punti.<br>
+ * Ad ogni turno le mosse possibili sono:<br>
+ * • N: un passo verso l’alto (Nord)<br>
+ * • S: un passo verso il basso (Sud)<br>
+ * • O: un passo a sinistra (Ovest)<br>
+ * • E: un passo a destra (Est)<br>
+ * Ogni passo costa 1 punto.<br>
+ * @subsubsection Premi e Ostacoli
+ * Durante il percorso Snake può incontrare:<br>
+ * • # pareti che non possono essere attraversate;<br>
+ * • $ monete, ciascuna del valore di 10 punti e che inoltre incrementano la sua lunghezza;<br>
+ * • ! imprevisti, che se incontrati dimezzano (divisione intera) il numero di monete raccolte, e la sua lunghezza;<br>
+ * • T trapano che permette di perforare le pareti. Al trapano è associato un numero di usi disponibili
+ * inizialmente pari a 0. Ogni vola che viene raccolta una T, il numero di usi disponibili del trapano
+ * aumenta di 3. Ogni volta che Snake entra in una casella con una parete il numero di usi diminuisce di
+ * 1, e la casella diventa vuota, cioè la parete nella casella scompare. Se il numero di usi è pari a 0, snake
+ * non può entrare in una cella con una parete. Le pareti esterne possono essere trapanate, ma non si
+ * possono superare i bordi del gioco.<br>
+ * <br>
+ * Gli oggetti scompaiono dopo la prima interazione con Snake.<br>
+ * Una volta raccolta una moneta, questa viene rimossa dal piano di gioco e non può essere raccolta due volte.<br>
+ * In modo simile per gli imprevisti. Snake non può occupare una cella dove si trova una parete #, e quindi le pareti non scompaiono mai, a meno che non venga usato il trapano.<br>
+ * Una volta trovata l’uscita, il punteggio è dato dal punteggio iniziale più la somma dei valori delle monete possedute all’uscita meno il numero di passi eseguiti.<br>
  *
  * @subsection install_sec installation
  *
@@ -293,7 +313,6 @@ void draw()
         printf("\n");
     }
 
-    // print the score after the game ends
     printf("drills = %d\n", drill_usages);
     printf("score = %d\n", score);
     if (ai_mode)
