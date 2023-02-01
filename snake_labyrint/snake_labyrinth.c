@@ -7,8 +7,11 @@
  *
  * @section install_sec installation
  * @subsection step1 step1: install gcc
+ * in fedora sudo dnf install gcc
  * @subsection step2 step2: gcc -O2 -std=c99 --pedantic *.c -o snake_labyrinth.c
- * @subsection step3 generating doxygen doc: doxygen Doxyfile
+ * @subsection step3 generating doxygen doc:
+ * sudo dnf install doxygen
+ * doxygen Doxyfile
  */
 
 #include "snake_labyrinth.h"
