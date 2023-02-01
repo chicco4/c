@@ -4,13 +4,12 @@
  * @brief a simple game where a snake tries to escape from a labyrinth
  * @mainpage main snake_labyrinth program
  *
- * @section intro_sec intruduction
+ * @section intro_sec Introduzione
  *
  * This program is a snake game that take place in a labyrinth.<br>
- * At the start you have to input throgh terminal the number of cols and rows the labyrinth is made of, then you can enter the labyrinth.
  *
- * @subsection rules rules of the game
- * * \code{.c}
+ * @subsection rules Regole del gioco
+ * @code{.c}
 19
 10
 ###################
@@ -23,15 +22,15 @@ o    #          $ #
 #          #      #
 #    $$$$  #      #
 ###################
- * \endcode
+ * @endcode
  *
  * La figura sopra rappresenta un labirinto dove il nostro protagonista Snake o deve trovare l’uscita _.<br>
  * Snake percorre il labirinto raccogliendo o evitando gli oggetti nel piano di gioco finché non raggiunge l’uscita.<br>
  * Ogni oggetto può aumentare o diminuire il punteggio del nostro eroe. Anche la lunghezza del percorso è importante perché Snake vuole uscire il prima possibile.<br>
- * <b>L’obiettivo del gioco è di trovare il miglior percorso che porta all’uscita del labirinto.<\b><br>
+ * <b>L’obiettivo del gioco è di trovare il miglior percorso che porta all’uscita del labirinto.</b><br>
  * Per migliore si intende il percorso che produce il punteggio più elevato.<br>
  * Ciò significa che il percorso migliore non è semplicemente il più breve.<br>
- * @subsubsection Mosse possibili
+ * @subsubsection moves Mosse possibili
  * Inizialmente Snake ha 1000 punti.<br>
  * Ad ogni turno le mosse possibili sono:<br>
  * • N: un passo verso l’alto (Nord)<br>
@@ -39,7 +38,7 @@ o    #          $ #
  * • O: un passo a sinistra (Ovest)<br>
  * • E: un passo a destra (Est)<br>
  * Ogni passo costa 1 punto.<br>
- * @subsubsection Premi e Ostacoli
+ * @subsubsection prizes Premi e Ostacoli
  * Durante il percorso Snake può incontrare:<br>
  * • # pareti che non possono essere attraversate;<br>
  * • $ monete, ciascuna del valore di 10 punti e che inoltre incrementano la sua lunghezza;<br>
@@ -56,7 +55,7 @@ o    #          $ #
  * In modo simile per gli imprevisti. Snake non può occupare una cella dove si trova una parete #, e quindi le pareti non scompaiono mai, a meno che non venga usato il trapano.<br>
  * Una volta trovata l’uscita, il punteggio è dato dal punteggio iniziale più la somma dei valori delle monete possedute all’uscita meno il numero di passi eseguiti.<br>
  *
- * @subsection install_sec installation
+ * @subsection install_sec Installazione
  *
  * @subsubsection step1 install gcc:
  * sudo dnf install gcc
@@ -79,6 +78,10 @@ void setup()
     tail_lenght = 0;
     drill_usages = 0;
 
+    system("clear");
+    printf("Welcome to the snake_labyrint game :)\n");
+    // wait 3 sec
+    usleep(3000000);
     system("clear");
     printf("insert labyrint:\n");
     // printf("input cols: "); // width
@@ -206,7 +209,7 @@ void logic()
         }
         break;
     case 4: /* E */
-        if (snake_head.i < cols - 1)
+        if (snake_head.j < cols - 1)
         {
             // check collision with borders
             if (board[snake_head.i][snake_head.j + 1] == '#')

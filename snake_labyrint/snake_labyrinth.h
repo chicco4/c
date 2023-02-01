@@ -84,7 +84,7 @@ void input();
 void random_ai();
 
 /**
- * @brief function that allows the snake to follow the right wall of the labyrinth untill it
+ * @brief function that allows the snake to follow the right wall of the labyrinth untill it reaches the end
  * @attention not yet implemented
  */
 void wall_follow_ai();
