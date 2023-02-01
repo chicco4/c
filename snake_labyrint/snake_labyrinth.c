@@ -61,7 +61,7 @@ o    #          $ #
  * sudo dnf install gcc
  *
  * @subsubsection step2 build the program:
- * gcc -O2 -std=c99 --pedantic *.c -o snake_labyrinth.c
+ * gcc -o snake_labyrinth snake_labyrinth.c
  *
  * @subsubsection step3 generate doxygen doc:
  * sudo dnf install doxygen<br>

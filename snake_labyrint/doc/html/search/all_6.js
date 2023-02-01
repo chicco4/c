@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../snake__labyrinth_8c.html#acdef7a1fd863a6d3770c1268cb06add3',1,'snake_labyrinth.c']]],
-  ['main_20snake_5flabyrinth_20program_1',['main snake_labyrinth program',['../index.html',1,'']]]
+  ['logic_0',['logic',['../snake__labyrinth_8c.html#a891ab028bd00ce90bbf291a355410e1e',1,'snake_labyrinth.c']]]
 ];

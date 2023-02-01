@@ -52,7 +52,9 @@ int moves_lenght;
  */
 typedef struct
 {
+    /**it indicates the position in the y axis of the board*/
     int i;
+    /**it indicates the position in the x axis of the board*/
     int j;
 } coordinates;
 
