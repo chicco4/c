@@ -2,16 +2,41 @@
  * @file snake_labyrinth.c
  * @author federico scaggiante
  * @brief a simple game where a snake tries to escape from a labyrinth
- * @date 2023-01-05
  * @mainpage main snake_labyrinth program
  *
+ * @section intro_sec intruduction
+ *
+ * This program is a snake game that take place in a labyrinth.<br>
+ * At the start you have to input throgh terminal the number of cols and rows the labyrinth is made of, then you can enter the labyrinth.
+ *
+ * @subsection input input example:
+ *
+ * \code{.c}
+19
+10
+###################
+o    #          $ #
+#    #          $ #
+#    #   ! #    $ #
+#    #     #    $ #
+#   T#     #      _
+#    #     #      #
+#          #      #
+#    $$$$  #      #
+###################
+ * \endcode
+ *
  * @section install_sec installation
- * @subsection step1 step1: install gcc
- * in fedora sudo dnf install gcc
- * @subsection step2 step2: gcc -O2 -std=c99 --pedantic *.c -o snake_labyrinth.c
- * @subsection step3 generating doxygen doc:
- * sudo dnf install doxygen
+ * @subsection step1 install gcc:
+ * sudo dnf install gcc
+ * @subsection step2 build the program:
+ * gcc -O2 -std=c99 --pedantic *.c -o snake_labyrinth.c
+ * @subsection step3 generate doxygen doc:
+ * sudo dnf install doxygen<br>
  * doxygen Doxyfile
+ * @subsection rules rules of the game
+ * the game rules are simple.<br>
+ * if the game touches the walls it dies
  */
 
 #include "snake_labyrinth.h"
@@ -80,7 +105,7 @@ void logic()
     int moving = 0;
     coordinates tmp = snake_head;
 
-    // clear board
+    // clear snake
     board[snake_head.i][snake_head.j] = ' ';
     for (size_t i = 0; i < tail_lenght; i++)
     {
@@ -93,6 +118,19 @@ void logic()
     case 1: /* N */
         if (snake_head.i > 0)
         {
+            // check collision with borders
+            if (board[snake_head.i - 1][snake_head.j] == '#')
+            {
+                // use drill to pass through
+                if (drill_usages > 0)
+                {
+                    drill_usages--;
+                }
+                else
+                {
+                    break;
+                }
+            }
             snake_head.i--;
             moving = 1;
         }
@@ -100,6 +138,19 @@ void logic()
     case 2: /* S */
         if (snake_head.i < rows - 1)
         {
+            // check collision with borders
+            if (board[snake_head.i + 1][snake_head.j] == '#')
+            {
+                // use drill to pass through
+                if (drill_usages > 0)
+                {
+                    drill_usages--;
+                }
+                else
+                {
+                    break;
+                }
+            }
             snake_head.i++;
             moving = 1;
         }
@@ -107,6 +158,19 @@ void logic()
     case 3: /* O */
         if (snake_head.j > 0)
         {
+            // check collision with borders
+            if (board[snake_head.i][snake_head.j - 1] == '#')
+            {
+                // use drill to pass through
+                if (drill_usages > 0)
+                {
+                    drill_usages--;
+                }
+                else
+                {
+                    break;
+                }
+            }
             snake_head.j--;
             moving = 1;
         }
@@ -114,6 +178,19 @@ void logic()
     case 4: /* E */
         if (snake_head.i < cols - 1)
         {
+            // check collision with borders
+            if (board[snake_head.i][snake_head.j + 1] == '#')
+            {
+                // use drill to pass through
+                if (drill_usages > 0)
+                {
+                    drill_usages--;
+                }
+                else
+                {
+                    break;
+                }
+            }
             snake_head.j++;
             moving = 1;
         }
@@ -168,20 +245,6 @@ void logic()
             snake_tail[i] = snake_tail[i - 1];
         }
         snake_tail[0] = tmp;
-    }
-
-    // check collision with borders
-    if (board[snake_head.i][snake_head.j] == '#')
-    {
-        // use drill to not die
-        if (drill_usages > 0)
-        {
-            drill_usages--;
-        }
-        else
-        {
-            gameover = 1;
-        }
     }
 
     // check collision with snake_tail
