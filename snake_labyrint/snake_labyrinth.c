@@ -26,17 +26,27 @@ o    #          $ #
 ###################
  * \endcode
  *
- * @section install_sec installation
- * @subsection step1 install gcc:
+ * @subsection rules rules of the game
+ * The game rules are simple.<br>
+ * The figure above represents a labyrinth where our protagonist Snake o has to find the exit _.<br>
+ * Snake navigate the maze collecting or avoiding objects in the gameboard until you reach the exit.<br>
+ * Everything item can increase or decrease our hero's score.<br>
+ * The length of the path is also important because Snake wants to get out as soon as possible.<br>
+ * The objective of the game is to find the best path to the exit of the labyrinth.<br>
+ * The best is the path that produces the highest score.<br>
+ * This means the best path is not simply the shortest.<br>
+ *
+ * @subsection install_sec installation
+ *
+ * @subsubsection step1 install gcc:
  * sudo dnf install gcc
- * @subsection step2 build the program:
+ *
+ * @subsubsection step2 build the program:
  * gcc -O2 -std=c99 --pedantic *.c -o snake_labyrinth.c
- * @subsection step3 generate doxygen doc:
+ *
+ * @subsubsection step3 generate doxygen doc:
  * sudo dnf install doxygen<br>
  * doxygen Doxyfile
- * @subsection rules rules of the game
- * the game rules are simple.<br>
- * if the game touches the walls it dies
  */
 
 #include "snake_labyrinth.h"
