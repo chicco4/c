@@ -92,7 +92,7 @@ void wall_follow_ai();
 /**print ending massage according to the win flag, also print the score*/
 void ending();
 
-/**it frees the varius all the dinamically allocated memory*/
+/**it frees the all the dinamically allocated memory*/
 void free_memory();
 
 /**
