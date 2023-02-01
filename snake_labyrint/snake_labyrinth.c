@@ -69,8 +69,9 @@ void setup()
     if (getchar() == 'y')
     {
         ai_mode = 1;
-        // arbitrary big array
-        moves = (int *)malloc(rows * cols * sizeof(int));
+        // init moves array
+        moves_lenght = 1;
+        moves = (int *)malloc(1 * sizeof(int));
     }
 }
 
@@ -298,7 +299,13 @@ void random_ai()
     {
         direction = 4;
     }
-    moves[moves_lenght] = direction;
+    int *tmp = (int *)malloc((moves_lenght + 1) * sizeof(int));
+    for (size_t i = 0; i < moves_lenght; i++)
+    {
+        tmp[i] = moves[i];
+    }
+    moves = tmp;
+    moves[moves_lenght - 1] = direction;
     moves_lenght++;
     // wait 1 sec each move
     // sleep(1);
