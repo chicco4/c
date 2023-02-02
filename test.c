@@ -1,3 +1,7 @@
+/**
+ * snake.c dove non rifaccio la board ogni volta che draw()
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
