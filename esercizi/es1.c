@@ -84,7 +84,7 @@ int main(void)
 
     print_list(list);
 
-    node_t *node = extract_at(&list, 2);
+    node_t *node = extract_at(&list, 0);
 
     printf("%d\n", node->val);
     print_list(list);
