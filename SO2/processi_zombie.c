@@ -13,12 +13,12 @@ int main()
     else if (pid == 0)
     {
         // FIGLIO
-        sleep(5);
         printf("[figlio] pid = %d, pid del genitore = %d\n", getpid(), getppid());
     }
     else
     {
         // GENITORE
+        sleep(5)
         printf("[genitore] pid = %d, pid del mio genitore = %d\n", getpid(), getppid());
         printf("[genitore] mio figlio ha pid = %d\n", pid);
     }
