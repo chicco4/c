@@ -7,6 +7,9 @@
 
 int main()
 {
+    pid_t ret = fork();
+
+    
 
     system("./checkPIN 01234");
     
