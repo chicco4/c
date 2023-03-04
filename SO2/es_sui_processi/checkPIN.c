@@ -5,7 +5,7 @@
 #define SUCCESSO "PIN %s corretto! >>> Sei autenticato <<<\n"
 #define FALLIMENTO "PIN %s errato\n"
 #define PINsegreto "01234"
- 
+
 int main(int argc, char **argv) {    
     if (argc == 1) {
         printf("Utilizzo: %s PIN\n(Il PIN è di %ld cifre e può iniziare per 0!)\n",
