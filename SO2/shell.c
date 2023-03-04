@@ -3,12 +3,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/wait.h>
 
 int main()
 {
-    pid_t pid;
-    pid_t esito = 1, i, status;
+    pid_t esito = 1, i;
     char comando[128], *argv[128], *pch;
     while (1)
     {
@@ -23,21 +21,23 @@ int main()
             pch = strtok(NULL, " \n"); // "parsa" gli argomenti successivi
         }
         argv[i] = NULL; // termina l'array argv con NULL
-        if ((argv[0] != 0) && (esito = fork()) < 0)
-            perror("fallimento fork");
-        else if (esito == 0)
-        {
-            execvp(argv[0], argv); // esegue il comando!
-            perror("Errore esecuzione");
-            exit(EXIT_FAILURE);
+        if (argv[0] != 0)
+        {                   // comando vuoto, ignora
+            esito = fork(); // crea un processo figlio
+            if (esito < 0)
+                perror("fallimento fork");
+            else if (esito == 0)
+            {
+                execvp(argv[0], argv); // esegue il comando!
+                perror("Errore esecuzione");
+                exit(EXIT_FAILURE);
+            }
         }
-
-        pid = wait(&status); // attende il processo figlio
-
-        // esamina lo stato di uscita
-        if (WIFEXITED(status))
-            printf("Exit status = %d\n", WEXITSTATUS(status));
-        else if (WIFSIGNALED(status))
-            printf("ANOMALO: status = %d\n", WTERMSIG(status));
     } // il processo genitore (shell) torna a leggere un altro comando
 }
+
+/**
+ * Non attende la terminazione del processo figlio: è come avere un & implicito.
+ * Lo si nota anche dal prompt myshell# immediatamente prima della lista dei file generata da ls:
+ * la shell chiede subito il comando successivo senza aspettare il risultato di quello precedente.
+ */
