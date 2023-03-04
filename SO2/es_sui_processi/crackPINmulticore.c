@@ -12,6 +12,8 @@
  * Funzione che fa il check dello status ed esce quando
  * la exit ha ritornato zero.
  * Viene riutilizzata in diversi punti del main
+ *
+ * https://secgroup.dais.unive.it/teaching/laboratorio-sistemi-operativi/esercitazione-su-gestione-dei-processi/task-5-extra-brute-forcing-multi-core/
  */
 void check(int status)
 {
