@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
         // qui si avrebbe accesso alle risorse se fosse un PIN vero ...
         exit(0); // success
     } else {
-        printf(FALLIMENTO, argv[1]); 
+        printf(FALLIMENTO, argv[1]);
         exit(1); // wrong PIN
     }
     
